@@ -25,3 +25,8 @@
 *.maf
 *.mtc
 *.mtc0
+*.pdf
+*.doc
+*~
+*.swp
+
