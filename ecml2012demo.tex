@@ -26,7 +26,7 @@
 %
 \mainmatter              % start of the contributions
 %
-\title{Scientific workflow management with the ADAMS system.}
+\title{Scientific workflow management with ADAMS}
 %
 \titlerunning{ADAMS: scientific workflow}  % abbreviated title (for running head)
 %                                     also used for the TOC unless
@@ -39,58 +39,58 @@
 %%%% list of authors for the TOC (use if author list has to be modified)
 \tocauthor{Joaquin Vanschoren and Peter Reutemann}
 %
-\institute{Leiden University, Leiden, NL,\\
-\email{joaquin@liacs.nl}
+\institute{Leiden University, Leiden, NL, \email{joaquin@liacs.nl}
 \and
-University of Waikato, Hamilton, NZ \\
-\email{fracpete@waikato.ac.nz}}
+University of Waikato, Hamilton, NZ, \email{fracpete@waikato.ac.nz}}
 
 \maketitle              % typeset the title of the contribution
 
 \begin{abstract}
-We demonstrate the practical use of a novel, flexible workflow engine, the Advanced Data mining And Machine learning System (ADAMS), aimed at quickly building and maintaining real-world, complex knowledge workflows. While most workflow engines allow users to manually arrange and connect different operators on a canvas, it becomes quite tedious to do so in complex, real-world settings with tens, maybe hundreds of operators. ADAMS automatically arranges workflows in a very compact way and offers a range of \emph{control operators} (e.g. branches and while-loops) to direct the data flow. It contains an extensive library of operators, and a plug-in architecture to easily add new ones.
-\keywords{scientific workflows, workflow engines, machine learning, data mining}
+We demonstrate the practical use of a novel, flexible workflow engine, the Advanced Data mining And Machine learning System (ADAMS), aimed at quickly building and maintaining complex knowledge workflows. Compared to most current workflow engines, ADAMS does not require the user to manually connect inputs to outputs on a large canvas, but instead arranges workflows automatically in a very compact tree structure, using \emph{control operators} to direct, split or converge data flows. It contains an extensive library of operators, and a convenient plug-in architecture to easily add new ones.
+\keywords{scientific workflows, machine learning, data mining}
 \end{abstract}
 %
 \section{Introduction}
-Many of today's data mining platforms offer \emph{workflow engines} allowing the user to design and run knowledge workflows, from cleaning raw data to building models and making predictions. Most of these systems, such as Kepler \cite{kepler}, RapidMiner \cite{rm} and KNIME \cite{knime2007}, are data-driven, i.e. data is passed from one operator to the next, and represent these dependencies in a directed graph.\footnote{For an in-depth overview and comparison of scientific workflow systems, see \cite{deelman,bowers}}. Many of them take a ``canvas''-based approach, in which the user places the various operators on a large canvas and then connects the various inputs and outputs manually, thus introducing each dependency as a line on the canvas. 
+Many of today's data mining platforms offer \emph{workflow engines} allowing the user to design and run knowledge workflows, from cleaning raw data to building models and making predictions. Most of these systems, such as Kepler \cite{kepler}, RapidMiner \cite{rm} and KNIME \cite{knime2007}, are data-driven, meaning that data is passed from one operator to the next, and they represent these dependencies in a directed graph.\footnote{For an in-depth overview and comparison of scientific workflow systems, see \cite{deelman,bowers}} Many of them take a ``canvas''-based approach, in which the user places operators on a large canvas and then connects the various inputs and outputs manually, thus introducing each dependency as a line on the canvas. 
 
-Though this is a very intuitive approach to design, it is also a very time consuming one. When inserting additional pre-processing steps, potentially in multiple places in numerous processing branches, the user ends up moving and rearranging a lot of actors in order to keep the design tidy, and needs to double-check if no crucial connections are broken. Moreover, many scientific data analyses are complex and can involve hundreds of independent steps and large amounts of heterogeneous data\cite{bowers}. On a canvas, this leads to very complex graphs and oversight is easily lost, even with useful features such as zooming, hierarchical workflows or operators with internal workflows.
+Though this is a very intuitive approach that greatly appeals to many end users, it is also a very time consuming one. When inserting additional operators, the user has to move and rearrange the entire workflow in order to keep the design tidy. If an operator is replaced, all connections have to be redrawn. Moreover, many scientific data analysis workflows are very complex and can involve hundreds of independent steps \cite{bowers}. On a canvas, this leads to very large and complex graphs with many interconnections. This means that oversight is easily lost, even with useful features such as zooming, hierarchical workflows or meta-operators with internal workflows.
 
-In this paper, we present the ADAMS framework (Advanced Data mining And Machine learning System), specifically aimed at quickly building and maintaining real-world, complex knowledge workflows. It entirely takes away the need to layout operators and connect inputs to outputs, and instead represents workflows in a very compact, automatically layouted tree structure in which operators can quickly be dropped in or pulled out, thus allowing quick workflow prototyping. In the remainder of this paper, we will first discuss how ADAMS supports complex scientific workflows in compact trees in Section \ref{representation}. Next, we will show how easy it is to write new operators in Section \ref{newactors}. Finally, Section \ref{examples} provides a brief overview of supported tasks and some real-world examples. 
+In this paper, we present ADAMS (Advanced Data mining And Machine learning System), a novel workflow engine specifically designed for quick prototyping of complex scientific workflows, taking away the need to manually lay out and connect operators on a canvas. It presents the workflow in a compact tree structure in which operators can quickly be dragged in or pulled out, uses a simplified input/output model that allows it to automatically arrange the workflow, and includes \emph{control operators} to create and direct sub-flows. This allows the user to maintain oversight in large complex workflows, and focus entirely on quick workflow prototyping.
+
+%In the remainder of this paper, we will first discuss ADAMS' novel workflow representation in Section \ref{representation}. After that, we briefly discuss the plug-in architecture for operators in Section \ref{newactors}. Section \ref{examples} discusses some real-world applications where ADAMS is being used, and Section \ref{conclusions} concludes.
 
 %that uses much more compact and simplified workflow representation to allow the user to focus on quick prototyping
 
 \section{Workflow representation}
 \label{representation}
 
-\begin{wrapfigure}{rt}{5cm}
+\begin{wrapfigure}{lt}{6cm}
   \centering
-  \vspace{-40pt}
-  \includegraphics[width=5cm]{images/geonet_flow.png}
+  \vspace{-25pt}
+  \includegraphics[width=6cm]{images/geonet_flow.png}
   \vspace{-20pt}
-  \caption{Flow for processing and visualizing seismic data.}
+  \caption{An ADAMS flow.}
   \label{flow}
   \vspace{-20pt}
 \end{wrapfigure}
 
-Figure \ref{flow} shows an example of an ADAMS workflow. It reads a file with earthquake data and plots it.\footnote{With the right actor, this can of course be done in much fewer steps, but we want to illustrate ADAMS control actors here.} As in canvas-based systems, operators (called `actors' in ADAMS) are dragged from a library into the workflow. However, in ADAMS, they will automatically `snap' into the tree structure. Actors are represented by a small node with a (custom) name and a list of parameter settings (options). They are
-color-coded based on whether they are a \emph{source} (only output, e.g. \texttt{SingleFileSupplier}~\icon{source}), \emph{sink} (only input, e.g. \texttt{SequencePlotter}~\icon{sink}), \emph{transformer} (input and output, e.g. \texttt{Convert}~\icon{transformer}) or \emph{standalone} (neither input nor output, e.g. \texttt{GlobalActors}~\icon{standalone}). Each branch can be collapsed, and each actor can be clicked to open a settings dialog.
+Figure \ref{flow} illustrates an ADAMS workflow. It reads a file with earthquake data and plots it.\footnote{Simpler flows exist. This workflow is designed to explain ADAMS' control actors.} As in canvas-based systems, operators (called `actors' in ADAMS) are dragged from a library into the workflow. However, in ADAMS, they will automatically `snap' into the tree structure depending on where they are dropped. Actors are represented by small nodes with a (custom) name and a list of parameter settings (options). They are
+color-coded based on whether they are a \emph{source} (only output, e.g. \texttt{SingleFileSupplier}~\icon{source}), \emph{sink} (only input, e.g. \texttt{SequencePlotter}~\icon{sink}), \emph{transformer} (input and output, e.g. \texttt{Convert}~\icon{transformer}) or \emph{standalone} (no input or output, e.g. \texttt{GlobalActors}~\icon{standalone}). Branches can be collapsed, and clicking actors opens a settings dialog.
 
-\paragraph{Tokens.} Data are passed as \emph{tokens} wrapping a single Java object (e.g. a string or an entire dataset), as well as provenance information, i.e. the trace of actors preceding the data. Transformer actors can receive a single token (e.g. a file name) and emit many (e.g. one for each read line), or vice versa, collect tokens and emit a single array (e.g., the \texttt{SequenceToArray} actor). Actors that produce different kinds of output can attach a key to a token (creating a key-value pair), and many such pairs can be combined in a \emph{container}. For instance, \texttt{MakePlotContainer} builds a container where data is labeled 'X' or 'Y' so it can be plotted. A \texttt{ContainerValuePicker} actor can later extract the token with a given key.
+\paragraph{Tokens.} Data are passed as \emph{tokens} wrapping a single Java object (e.g. a string or an entire dataset), as well as provenance information: a trace of actors affecting the data. Tokens can assume any level of granularity: actors can receive a single token (e.g., a dataset) and emit many (e.g., data points), or vice versa, buffer tokens and emit an array (e.g., the \texttt{SequenceToArray} actor). Actors with several outputs can attach a key to each token, creating a key-value pair. Many such pairs can be combined in a \emph{container}, and other actors can extract tokens based on their keys. For instance, \texttt{MakePlotContainer} attaches 'X' and 'Y' keys so that data can be plotted.
 
-\paragraph{Control actors} control how data is passed between actors, and thus replace hand-drawn connections. A \texttt{Sequence} \icon{sequence} executes all its sub-actors in sequence, passing the input to the first sub-actor in line. A \texttt{Branch}~\icon{branch} channels its input to all underlying actors and executes them in parallel. A \texttt{Tee}~\icon{tee} splits off its input to its sub-flow and executes it before passing it on, a \texttt{Trigger}~\icon{trigger} starts its sub-flow upon receiving an input (but does not forward the data to its sub-flow), and an \texttt{Injector}~\icon{injector} injects a certain value into the flow, in addition to passing on its input. Some control actors have conditions, such as the \texttt{Conditional Tee}, only executes its sub-flow if a stated condition holds, or the \texttt{If-Then-Else} actor, which executes one of two sub-workflows depending on a boolean test. ADAMS defines over 20 such control actors.
+\paragraph{Control actors} can branch or merge sub-flows and define how data is passed between their sub-actors. \texttt{Sequence} \icon{sequence} executes its sub-actors in sequence, passing tokens from one to the next. \texttt{Branch}~\icon{branch} copies each received token to all underlying actors and executes them in parallel. \texttt{Tee}~\icon{tee} splits off each input token, feeds it to its sub-flow and waits until it finishes before passing the token on. \texttt{Trigger}~\icon{trigger} simply starts its sub-flow upon receiving a token (without feeding the token to its sub-flow). \texttt{Injector}~\icon{injector} passes each received token on, but also injects a new token whose value is defined as a parameter. Some actors are conditioned on the value of the received token: \texttt{ConditionalTee}~\icon{conditionaltee} runs its sub-flow only if a stated condition holds, \texttt{If-Then-Else}~\icon{if} runs one of two sub-workflows depending on a test, and \texttt{WhileLoop}~\icon{while} loops over its sub-flow as long as its condition holds.
 
-\paragraph{N-to-M semantics.} The drawback of a tree representation is that it cannot represent N-to-M relationships. ADAMS offers three ways of dealing with this shortcoming. First, any token can be written to a \emph{variable}. In Figure \ref{flow}, the \texttt{SetVariable} actor assigns its input value to a certain variable, e.g. \emph@\{timestamp\}, which can then be used at any point in the workflow. It can be (re)introduced in the flow by the \texttt{Variable} source actor, or be part of another actor's option settings, thus dynamically changing the behavior of the flow. Similarly, any token (also complex objects) can be stored as a key-value pair by the \texttt{SetStorageValue} actor and afterwards be reintroduced by the \texttt{StorageValue} source actor. Finally, actors and entire sub-flows can be defined as \emph{global} by dragging them under \texttt{GlobalActors}, and called simply by inserting a \texttt{GlobalSink}/\texttt{Source}/\texttt{Transformer} actor referencing their name, such as \texttt{SequencePlotter} in Fig. \ref{flow}.
+\paragraph{N-to-M semantics.} While a tree representation cannot represent N-to-M relationships, ADAMS solves this shortcoming through \emph{global variables, global key-value pairs, and global actors}. Any string token can be assigned to a global variable using the \texttt{SetVariable} actor (e.g., \emph@\{timestamp\} in Fig.\ref{flow}), and used as an actor parameter or reintroduced elsewhere as a token by the \texttt{Variable} actor. Similarly, any object token can be stored as a key-value pair by the \texttt{SetStorageValue} actor and reintroduced by the \texttt{StorageValue} actor. Even actors and their sub-flows can be made global: for instance, all tokens sent to a \texttt{GlobalSink} actor are passed to the referenced global actor, as shown in Fig. \ref{flow}.
 
-\paragraph{Interactivity} Actors can interact with the user. For instance, they can ask the user to locate an undefined file, or even display a number of results, and allow the user to make a subselection before proceeding.
+\paragraph{Interactivity.} Actors can interact with the user when needed through dialogues. For instance, they can ask the user to locate an undefined file, or display a number of results and allow the user to make a subselection before proceeding.
 
-\section{Finding and building new actors}
+\section{Plug-in architecture}
 \label{newactors}
-ADAMS contains an extensive library of operators. Table \ref{table} provides a short overview of known tools which are currently fully supported in ADAMS.
+ADAMS contains an extensive library of actors enabling the inclusion of techniques from many existing libraries. This includes actors for machine learning techniques, importing and exporting spreadsheets, generating graphics and PDF files and sending email. A concise overview of currently supported libraries is shown in Table \ref{table}. In addition, ADAMS has a plug-in architecture to easily add new actors on the fly. A new actor can be written as a single Java class implementing a simple API. When this file is dropped into a specific folder (icon optional), ADAMS will find it and show the actor in the workflow interface.
 
-\begin{table}[htdp]
-\caption{default}
+\begin{table}[t]
+\caption{Overview of currently supported tools, available through actors}
 \begin{center}
 \begin{tabular}{|l|l|}
 \hline
@@ -102,21 +102,20 @@ Spreadsheets & MS Excel, ODF, CSV \\
 Graphics & BMP, JPG, PNG, TIF, PDF \\
 Imaging & ImageJ, JAI, ImageMagick, Gnuplot \\
 Scripting & Groovy, Jython \\
-Documentation & DocBook, HTML \\
-Other & HTTP, FTP, SFTP, SSH, Email, tar/zip/bzip2/gzip/lzma, Java code generation \\
+Other & HTTP, FTP, SFTP, SSH, Email, tar/zip/bzip2/gzip \\
 \hline
 \end{tabular}
 \end{center}
 \label{table}
 \end{table}%
 
-In addition, ADAMS sports a plug-in architecture to easily write and add new actors on the fly. A new actor can be written as a single Java class implementing a simple interface for receiving and emitting tokens and defining and setting options. Next, it has to be dropped in a specific folder (together with an optional icon) where it will be found and made directly available.
-
-\section{Examples}
+\section{Applications}
 \label{examples}
+ADAMS is being used in two practical applications involving large, complex workflows. First, Gas Chromatography Mass Spectrometry (GC-MS) is a technique used to detect high concentrations of compounds of interest, but the raw data produced by GC-MS devices is generally not amenable to processing with machine learning systems. Using ADAMS, effective data flows were designed to entirely automate this process \cite{holmes2010}. Second, in the InfraWatch project \cite{infrawatch}, a heterogeneous sensor network of over 150 sensors is monitoring the dynamic behavior and structural health of a highway bridge. The token-based design of ADAMS proved ideal for online processing of sensor data, and its quick workflow prototyping facilitates experimentation with novel time series analysis techniques.
 
-For more examples and videos, please refer to the following URL: \\
-\url{http://www.cs.waikato.ac.nz/~fracpete/adams-demo/}
+\section{Conclusions}
+\label{conclusion}
+Most scientific workflow engines use a canvas on which operators are manually arranged and connected. While this is certainly very intuitive and appealing for many end users, it is not ideal for handling very large, complex workflows. ADAMS was developed to offer an alternative for researchers and practitioners dealing with such large workflows. Using a range of \emph{control operators}, it creates a very compact workflow representation in which operators are automatically arranged, thus appreciatively speeding up workflow design and maintenance. Examples and extensive documentation can be found on the ADAMS website: \url{http://www.cs.waikato.ac.nz/~fracpete/adams-demo/}
 
 %
 % ---- Bibliography ----
@@ -137,13 +136,16 @@ Berthold M. R., Cebron, N., Dill, F., Gabriel, T. R., K\"{o}tter, T., Meinl, T.,
 KNIME: The Konstanz Information Miner. In \emph{Data Analysis, Machine Learning and Applications}, pp. 319-326 (2008). 
 
 \bibitem{deelman}
-Deelman, E., Gannon, D., Shields, M., Taylor, I.: Workflows and e-Science: An overview of workflow system features and capabilities. Future Generation Computer Systems 25(2009): 528-540.
+Deelman, E., Gannon, D., Shields, M., Taylor, I.: Workflows and e-Science: An overview of workflow system features and capabilities. Future Generation Computer Systems 25 (2009): 528-540.
 
 \bibitem{bowers}
 Bowers, S.: Scientific Workflow, Provenance, and Data Modeling Challenges and Approaches. Data Semantics (2012) 1:19-30.
 
-%\bibitem{holmes2010}
-%Holmes, G., Fletcher, D., Reutemann, P.: Predicting Polycyclic Aromatic Hydrocarbon Concentrations in Soil and Water Samples. Proceedings of the International Congress on Environmental Modelling and Software (IEMSS), Ottawa, Canada (2010).
+\bibitem{holmes2010}
+Holmes, G., Fletcher, D., Reutemann, P.: Predicting Polycyclic Aromatic Hydrocarbon Concentrations in Soil and Water Samples. Proceedings of the International Congress on Environmental Modelling and Software (IEMSS) (2010).
+
+\bibitem{infrawatch}
+Vespier, U., Knobbe, A., Vanschoren, J., Miao, S., Koopman, A., Obladen, B., Bosma, C.:Traffic Events Modeling for Structural Health Monitoring. Proceedings of IDA 2011, pp. 376-387 (2011).
 
 \end{thebibliography}
 
