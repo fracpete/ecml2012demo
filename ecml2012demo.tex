@@ -66,28 +66,37 @@ In this paper, we present ADAMS (Advanced Data mining And Machine learning Syste
 
 \begin{wrapfigure}{lt}{6cm}
   \centering
+  \vspace{-30pt}
+  \includegraphics[width=6cm]{images/scalespace.png}
   \vspace{-15pt}
-  \includegraphics[width=6cm]{images/geonet_flow.png}
-  \vspace{-10pt}
-  \caption{An ADAMS flow.}
+  \caption{Data visualization flow.}
   \label{flow}
-  \vspace{-20pt}
+  \vspace{-15pt}
 \end{wrapfigure}
 
-Figure \ref{flow} illustrates an ADAMS workflow. It reads a file with earthquake data and plots it.\footnote{Simpler flows exist. This workflow is designed to explain ADAMS' control actors.} Operators (called `actors') are dragged from a library into the flow, and will automatically `snap' into the tree structure depending on where they are dropped. Actors are shown as nodes with a name and a list of parameter settings (options). They are color-coded based on whether they are a \emph{source} (only output, e.g. \texttt{SingleFileSupplier}~\icon{source}), \emph{transformer} (input and output, e.g. \texttt{Convert}~\icon{transformer}), \emph{sink} (only input, e.g. \texttt{SequencePlotter}~\icon{sink}) or \emph{standalone} (no in/output, e.g. \texttt{GlobalActors}~\icon{standalone}). Branches can be collapsed, and clicking actors opens a settings dialog. Some actors are fine-grained, allowing data to be manipulated within the flow, instead of requiring new actors.
+Figure \ref{flow} illustrates an ADAMS workflow. It reads files from a directory with sensor data and plots the raw and convoluted data. Operators (called `actors') are dragged from a library into the flow, and will automatically `snap' into the tree structure depending on where they are dropped. Actors are shown as nodes with a name and a list of parameter settings (options). They are color-coded based on whether they are a \emph{source} (only output, e.g. \texttt{DirectoryLister}~\icon{source}), \emph{transformer} (input and output, e.g. \texttt{Convolution}~\icon{transformer}), \emph{sink} (only input, e.g. \texttt{SequencePlotter}~\icon{sink}) or \emph{standalone} (no in/output, e.g. \texttt{Global\-Actors}~\icon{standalone}). Branches can be collapsed, and clicking actors opens a settings dialog. Some actors are fine-grained, allowing data to be manipulated within the flow, instead of requiring new actors.
 
 \paragraph{Tokens.} Data are passed as \emph{tokens} wrapping a single Java object (e.g. a string or an entire dataset), as well as provenance information: a trace of actors affecting the data. Tokens can assume any level of granularity: actors can receive a single token (e.g., a dataset) and emit many (e.g., data points), or vice versa, buffer tokens and emit an array (e.g., the \texttt{SequenceToArray} actor). Actors with several outputs can attach a key to each token, creating a key-value pair. Many such pairs can be combined in a \emph{container}, and other actors can extract tokens based on their keys. For instance, \texttt{MakePlotContainer} attaches `X' and `Y' keys so that data can be plotted.
 
 \paragraph{Control actors} can branch or merge sub-flows and define how data is passed between their sub-actors. \texttt{Sequence} \icon{sequence} executes its sub-actors in sequence, passing tokens from one to the next. \texttt{Branch}~\icon{branch} forwards each received token to all underlying actors and executes them in parallel. \texttt{Tee}~\icon{tee} splits off each input token, feeds it to its sub-flow and waits until it finishes before passing the token on. \texttt{Trigger}~\icon{trigger} simply starts its sub-flow upon receiving a token (without feeding the token to its sub-flow). \texttt{Injector}~\icon{injector} passes each received token on, but also injects a new token whose value is defined as a parameter. Some actors are conditioned on the value of the received token: \texttt{ConditionalTee}~\icon{conditionaltee} runs its sub-flow only if a stated condition holds, \texttt{If-Then-Else}~\icon{if} runs one of two sub-workflows depending on a test, and \texttt{WhileLoop}~\icon{while} loops over its sub-flow as long as its condition holds.
 
-\paragraph{N-to-M semantics.} While a tree representation cannot represent N-to-M relationships, ADAMS solves this shortcoming through \emph{variables, key-value pairs, and global actors}. String tokens can be assigned to a variable using a \texttt{SetVariable} actor (e.g., \texttt{@\{timestamp\}} in Fig.\ref{flow}), and used as an actor parameter or reintroduced elsewhere as a token by the \texttt{Variable} actor. Similarly, any object token can be stored as a key-value pair by the \texttt{SetStorageValue} actor and reintroduced by the \texttt{StorageValue} actor. Finally, actors and their sub-flows can be made global: for instance, all tokens sent to a \texttt{GlobalSink} actor are passed to the referenced global actor, as shown in Fig. \ref{flow}. The scope of variables can be limited to one specific sub-flow by using the \texttt{LocalScope} control actor.
+\paragraph{N-to-M semantics.} While a tree representation cannot represent N-to-M relationships, ADAMS solves this shortcoming through \emph{variables, key-value pairs, and global actors}. String tokens can be assigned to a variable using a \texttt{SetVariable} actor (e.g., \texttt{@\{sigma\}} in Fig.\ref{flow}), and used as an actor parameter or reintroduced elsewhere as a token by the \texttt{Variable} actor. Similarly, any object token can be stored as a key-value pair by the \texttt{SetStorageValue} actor and reintroduced by the \texttt{StorageValue} actor. Finally, actors and their sub-flows can be made global: for instance, all tokens sent to a \texttt{GlobalSink} actor are passed to the referenced global actor, as shown in Fig. \ref{flow}. The scope of variables can be limited to one specific sub-flow by using the \texttt{LocalScope} control actor.
 
 
 \paragraph{Interactivity.} Actors can interact with the user when needed through dialog. For instance, they can ask the user to locate an undefined file, or display a number of results and allow the user to make a subselection before proceeding.
 
 \section{Plug-in architecture}
 \label{newactors}
-ADAMS contains an extensive library of actors enabling the inclusion of techniques from many existing libraries. This includes actors for machine learning techniques, importing and exporting spreadsheets, generating graphics and PDF files and sending email. A concise overview of currently supported libraries is shown in Table \ref{table}. In addition, ADAMS has a plug-in architecture to easily add new actors. A new actor can be written as a single Java class implementing a simple API. When this file is dropped into a specific folder (icon optional), ADAMS will find it and show the actor in the workflow interface. Using one of the scripting languages, actors can be developed on-the-fly without compilation.
+\begin{wrapfigure}{lt}{7cm}
+  \centering
+  \vspace{-20pt}
+  \includegraphics[width=7cm]{images/architecture.png}
+  \vspace{-15pt}
+  \caption{ADAMS architecture.}
+  \label{architecture}
+  \vspace{-20pt}
+\end{wrapfigure}
+ADAMS contains an extensive library of actors enabling the inclusion of techniques from many existing libraries in a modular framework (see Fig.\ref{architecture}). This includes actors for machine learning techniques, importing and exporting spreadsheets, generating graphics and PDF files and sending email. A concise overview of currently supported libraries is shown in Table \ref{table}. In addition, ADAMS has a plug-in architecture to easily add new actors. A new actor can be written as a single Java class implementing a simple API. When this file is dropped into a specific folder (icon optional), ADAMS will find it and show the actor in the workflow interface. Using one of the scripting languages, actors can be developed on-the-fly without compilation.
 
 \begin{table}[t]
 \caption{Overview of currently supported tools, available through actors.}

@@ -127,7 +127,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -136,7 +136,10 @@
      inkscape:groupmode="layer"
      id="layer1">
     <g
-       id="g5121">
+       id="g5121"
+       inkscape:export-filename="/home/fracpete/documents/presentations/adams/ecml2012demo/images/architecture.png"
+       inkscape:export-xdpi="150"
+       inkscape:export-ydpi="150">
       <g
          id="g5071">
         <g
