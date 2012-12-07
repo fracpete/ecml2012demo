@@ -14,7 +14,10 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.3.1 r9886"
-   sodipodi:docname="architecture.svg">
+   sodipodi:docname="architecture.svg"
+   inkscape:export-filename="/home/fracpete/documents/presentations/adams/ecml2012demo/images/architecture.png"
+   inkscape:export-xdpi="150"
+   inkscape:export-ydpi="150">
   <defs
      id="defs4">
     <marker
@@ -58,6 +61,48 @@
          d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
          transform="matrix(-1.1,0,0,-1.1,-1.1,0)" />
     </marker>
+    <marker
+       inkscape:stockid="Arrow2Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2Lend-5"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path4696-0"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="matrix(-1.1,0,0,-1.1,-1.1,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2Lend-5-7"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path4696-0-1"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="matrix(-1.1,0,0,-1.1,-1.1,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2Lend-5-9"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path4696-0-0"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="matrix(-1.1,0,0,-1.1,-1.1,0)" />
+    </marker>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -67,7 +112,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.7"
-     inkscape:cx="404.92393"
+     inkscape:cx="375.02903"
      inkscape:cy="906.30979"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -94,13 +139,9 @@
      inkscape:groupmode="layer"
      id="layer1">
     <g
-       id="g4243"
-       transform="translate(0,-1.0143158e-5)"
-       inkscape:export-filename="/home/fracpete/documents/presentations/adams/ecml2012demo/images/architecture.png"
-       inkscape:export-xdpi="150"
-       inkscape:export-ydpi="150">
+       id="g4360">
       <g
-         transform="translate(123.56302,90.142857)"
+         transform="translate(123.35325,90.142846)"
          id="g4049">
         <rect
            style="fill:#e8e8e8;fill-opacity:1;stroke:#000000;stroke-width:0.85102266;stroke-opacity:1"
@@ -128,63 +169,7 @@
              style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Sans;-inkscape-font-specification:Sans">moa</tspan></text>
       </g>
       <g
-         id="g3765-7"
-         transform="translate(80.06866,90.342847)">
-        <rect
-           style="fill:#e8e8e8;fill-opacity:1;stroke:#000000;stroke-width:1.25100231;stroke-opacity:1"
-           id="rect2987-3"
-           width="163.20784"
-           height="45"
-           x="23.571428"
-           y="93.790756">
-          <desc
-             id="desc2991-0">core</desc>
-          <title
-             id="title2989-6">core</title>
-        </rect>
-        <text
-           xml:space="preserve"
-           style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-           x="36.763725"
-           y="122.36009"
-           id="text3761-5"
-           sodipodi:linespacing="125%"><tspan
-             sodipodi:role="line"
-             id="tspan3763-8"
-             x="36.763725"
-             y="122.36009"
-             style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Sans;-inkscape-font-specification:Sans">spreadsheet</tspan></text>
-      </g>
-      <g
-         transform="translate(0,87.645337)"
-         id="g3904">
-        <rect
-           style="fill:#e8e8e8;fill-opacity:1;stroke:#000000;stroke-width:0.85598338;stroke-opacity:1"
-           id="rect2987-32"
-           width="76.410927"
-           height="45"
-           x="24.253222"
-           y="96.290756">
-          <desc
-             id="desc2991-10">core</desc>
-          <title
-             id="title2989-0">core</title>
-        </rect>
-        <text
-           xml:space="preserve"
-           style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-           x="37.445518"
-           y="124.86009"
-           id="text3761-7"
-           sodipodi:linespacing="125%"><tspan
-             sodipodi:role="line"
-             id="tspan3763-15"
-             x="37.445518"
-             y="124.86009"
-             style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Sans;-inkscape-font-specification:Sans">core</tspan></text>
-      </g>
-      <g
-         transform="translate(563.57133,94.174573)"
+         transform="translate(563.57115,94.174562)"
          id="g3916">
         <rect
            style="fill:#e8e8e8;fill-opacity:1;stroke:#000000;stroke-width:1.0573076;stroke-opacity:1"
@@ -212,35 +197,7 @@
              style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Sans;-inkscape-font-specification:Sans">imaging</tspan></text>
       </g>
       <g
-         transform="translate(31.974271,60.614408)"
-         id="g4061">
-        <rect
-           style="fill:#e8e8e8;fill-opacity:1;stroke:#000000;stroke-width:1.0798291;stroke-opacity:1"
-           id="rect2987-5"
-           width="121.60036"
-           height="45"
-           x="443.39609"
-           y="123.43361">
-          <desc
-             id="desc2991-7">core</desc>
-          <title
-             id="title2989-1">core</title>
-        </rect>
-        <text
-           xml:space="preserve"
-           style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-           x="456.58838"
-           y="152.00294"
-           id="text3761-74"
-           sodipodi:linespacing="125%"><tspan
-             sodipodi:role="line"
-             id="tspan3763-5"
-             x="456.58838"
-             y="152.00294"
-             style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Sans;-inkscape-font-specification:Sans">scripting</tspan></text>
-      </g>
-      <g
-         transform="translate(102.2012,-45.18985)"
+         transform="translate(101.78183,-45.18986)"
          id="g4073">
         <rect
            style="fill:#e8e8e8;fill-opacity:1;stroke:#000000;stroke-width:0.89990479;stroke-opacity:1"
@@ -268,15 +225,96 @@
              style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Sans;-inkscape-font-specification:Sans">weka</tspan></text>
       </g>
       <g
-         transform="translate(-128.60062,168.33123)"
-         id="g4025">
+         id="g4341">
         <rect
-           style="fill:#e8e8e8;fill-opacity:1;stroke:#000000;stroke-width:0.799182;stroke-opacity:1"
-           id="rect2987-1"
-           width="66.606438"
+           style="fill:#e8e8e8;fill-opacity:1;stroke:#000000;stroke-width:1.083;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+           id="rect2987-3"
+           width="154.5918"
            height="45"
-           x="398.39609"
-           y="15.576468">
+           x="394.40173"
+           y="184.13359">
+          <desc
+             id="desc2991-0">core</desc>
+          <title
+             id="title2989-6">core</title>
+        </rect>
+        <text
+           xml:space="preserve"
+           style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+           x="401.59406"
+           y="212.70293"
+           id="text3761-5"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             id="tspan3763-8"
+             x="401.59406"
+             y="212.70293"
+             style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Sans;-inkscape-font-specification:Sans">spreadsheet</tspan></text>
+      </g>
+      <g
+         id="g4353">
+        <rect
+           style="fill:#e8e8e8;fill-opacity:1;stroke:#000000;stroke-width:1.083;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+           id="rect2987-32"
+           width="66.636925"
+           height="45"
+           x="24.253222"
+           y="183.93608">
+          <desc
+             id="desc2991-10">core</desc>
+          <title
+             id="title2989-0">core</title>
+        </rect>
+        <text
+           xml:space="preserve"
+           style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+           x="31.445518"
+           y="212.50542"
+           id="text3761-7"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             id="tspan3763-15"
+             x="31.445518"
+             y="212.50542"
+             style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Sans;-inkscape-font-specification:Sans">core</tspan></text>
+      </g>
+      <g
+         transform="translate(-30.792737,0)"
+         id="g3327">
+        <rect
+           style="fill:#e8e8e8;fill-opacity:1;stroke:#000000;stroke-width:1.04068613;stroke-opacity:1"
+           id="rect2987-5"
+           width="112.94431"
+           height="45"
+           x="308.98904"
+           y="184.048">
+          <desc
+             id="desc2991-7">core</desc>
+          <title
+             id="title2989-1">core</title>
+        </rect>
+        <text
+           xml:space="preserve"
+           style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+           x="316.18134"
+           y="212.61734"
+           id="text3761-74"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             id="tspan3763-5"
+             x="316.18134"
+             y="212.61734"
+             style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Sans;-inkscape-font-specification:Sans">scripting</tspan></text>
+      </g>
+      <g
+         id="g4317">
+        <rect
+           style="fill:#e8e8e8;fill-opacity:1;stroke:#000000;stroke-width:1.083;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+           id="rect2987-1"
+           width="55.802116"
+           height="45"
+           x="219.3761"
+           y="183.90768">
           <desc
              id="desc2991-1">core</desc>
           <title
@@ -285,26 +323,25 @@
         <text
            xml:space="preserve"
            style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-           x="411.58838"
-           y="44.145802"
+           x="226.56839"
+           y="212.47701"
            id="text3761-72"
            sodipodi:linespacing="125%"><tspan
              sodipodi:role="line"
              id="tspan3763-4"
-             x="411.58838"
-             y="44.145802"
+             x="226.56839"
+             y="212.47701"
              style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Sans;-inkscape-font-specification:Sans">net</tspan></text>
       </g>
       <g
-         transform="translate(-199.10735,174.92498)"
-         id="g4037">
+         id="g4310">
         <rect
-           style="fill:#e8e8e8;fill-opacity:1;stroke:#000000;stroke-width:1.12954211;stroke-opacity:1"
+           style="fill:#e8e8e8;fill-opacity:1;stroke:#000000;stroke-width:1.083;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
            id="rect2987-52"
-           width="133.05452"
+           width="122.3732"
            height="45"
-           x="538.39606"
-           y="9.1478958">
+           x="93.963486"
+           y="184.07286">
           <desc
              id="desc2991-3">core</desc>
           <title
@@ -313,26 +350,49 @@
         <text
            xml:space="preserve"
            style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-           x="551.58838"
-           y="37.717232"
+           x="101.1558"
+           y="212.6422"
            id="text3761-73"
            sodipodi:linespacing="125%"><tspan
              sodipodi:role="line"
              id="tspan3763-7"
-             x="551.58838"
-             y="37.717232"
+             x="101.1558"
+             y="212.6422"
              style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Sans;-inkscape-font-specification:Sans">compress</tspan></text>
+      </g>
+      <g
+         id="g4329">
+        <rect
+           style="fill:#e8e8e8;fill-opacity:1;stroke:#000000;stroke-width:1.083;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+           id="rect2987-1-7"
+           width="44.49416"
+           height="45"
+           x="552.06091"
+           y="183.85143">
+          <desc
+             id="desc2991-1-1">core</desc>
+          <title
+             id="title2989-7-7">core</title>
+        </rect>
+        <text
+           xml:space="preserve"
+           style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+           x="563.81824"
+           y="207.71568"
+           id="text3761-72-6"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             id="tspan3763-4-3"
+             x="563.81824"
+             y="207.71568"
+             style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Sans;-inkscape-font-specification:Sans">...</tspan></text>
       </g>
     </g>
     <g
-       id="g4157"
-       transform="translate(-1.389054,16.192964)"
-       inkscape:export-filename="/home/fracpete/documents/presentations/adams/ecml2012demo/images/architecture.png"
-       inkscape:export-xdpi="150"
-       inkscape:export-ydpi="150">
+       id="g3089">
       <rect
-         y="115.65099"
-         x="25.682655"
+         y="131.84396"
+         x="24.293602"
          height="45.314259"
          width="857.88623"
          id="rect4151"
@@ -340,21 +400,18 @@
       <text
          sodipodi:linespacing="125%"
          id="text4153"
-         y="146.50978"
-         x="373.57596"
+         y="160.57043"
+         x="386.39883"
          style="font-size:40px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
          xml:space="preserve"><tspan
            style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Sans;-inkscape-font-specification:Sans"
-           y="146.50978"
-           x="373.57596"
+           y="160.57043"
+           x="386.39883"
            id="tspan4155"
-           sodipodi:role="line">actor interface</tspan></text>
+           sodipodi:role="line">Flow Engine</tspan></text>
     </g>
     <g
-       id="g4637"
-       inkscape:export-filename="/home/fracpete/documents/presentations/adams/ecml2012demo/images/architecture.png"
-       inkscape:export-xdpi="150"
-       inkscape:export-ydpi="150">
+       id="g4815">
       <g
          transform="translate(-0.0960207,0)"
          id="g4629">
@@ -511,5 +568,20 @@
        inkscape:export-filename="/home/fracpete/documents/presentations/adams/ecml2012demo/images/architecture.png"
        inkscape:export-xdpi="150"
        inkscape:export-ydpi="150" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Lend-5)"
+       d="m 105.1167,117.75889 0,25.25381"
+       id="path3290"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Lend-5)"
+       d="m 297.68829,117.7589 0,25.25381"
+       id="path3290-8"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Lend-5)"
+       d="m 499.27147,117.75889 0,25.25381"
+       id="path3290-4"
+       inkscape:connector-curvature="0" />
   </g>
 </svg>
